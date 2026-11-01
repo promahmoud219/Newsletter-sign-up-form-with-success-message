@@ -21,6 +21,9 @@
         background: var(--gradient-primary);
     }
 
+    &--secondary{
+        box-shadow: 0 4px 20px 0 transparent;
+    }
     &--secondary:hover{
         box-shadow: 0 4px 20px 0 var(--color-red);
     }

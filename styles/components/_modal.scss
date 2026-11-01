@@ -1,0 +1,35 @@
+@use "./../abstracts/colors" as *;
+@use "./../abstracts/spacing" as *;
+@use "./../abstracts/typography" as *;
+
+.modal{
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-400);
+    padding: var(--spacing-800);
+
+    background: var(--color-white);
+    color: var(--color-blue-800);
+
+
+    border-radius: 36px;
+    border: none;
+    box-shadow: 0 0 50px 5px rgba(128, 128, 128, 0.4);
+
+    &__img{
+        width: var(--spacing-800);
+        height: var(--spacing-800);
+    }
+
+    &__title{
+        @include text-preset(1);
+        
+    }
+    
+    &__description{
+        @include text-preset(2-regular);
+
+    }
+
+
+}

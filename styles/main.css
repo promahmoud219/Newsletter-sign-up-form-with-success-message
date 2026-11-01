@@ -74,7 +74,7 @@ body {
 }
 .button:focus-visible {
   outline: 3px solid var(--color-red);
-  outline-offset: 1px;
+  outline-offset: 3px;
 }
 .button:disabled {
   opacity: 0.5;
@@ -141,6 +141,7 @@ body {
   background: var(--color-red-bg);
   color: var(--color-red);
 }
-.form-group .input--error:focus {
-  border-color: var(--color-red);
+.form-group .input--error:focus-visible {
+  outline: 1px solid var(--color-red);
+  outline-offset: 2px;
 }

@@ -13,6 +13,7 @@
     
     cursor: pointer;
     transition: background 0.3s ease, box-shadow 0.3s ease;
+ 
     
     background: var(--color-blue-800);
 
@@ -24,9 +25,10 @@
         box-shadow: 0 4px 20px 0 var(--color-red);
     }
     
+    
     &:focus-visible {
         outline: 3px solid var(--color-red);
-        outline-offset: 1px;
+        outline-offset: 3px;
     }
     
     &:disabled {

@@ -4,24 +4,28 @@
 
 
 .form-group{
-    @include text-preset(3);
-
-    color: var(--color-blue-800);
-    width: 100%;
     
     display: flex;
     flex-direction: column;
     gap: var(--spacing-100);
+    
+    color: var(--color-blue-800);
+    width: 100%;
+    
 
     &__header{
+        @include text-preset(3);
         width: 100%;
         display: flex;
         justify-content: space-between;
-
-        #email-error{
-            color: var(--color-red);
-        }
+    }
+    
+    &__error{
+        color: var(--color-red);
         
+        &:empty{
+            display: none;
+        }
     }
     
     input {
@@ -31,6 +35,8 @@
 
         border: 1px solid var(--color-grey);
         border-radius: var(--spacing-100);
+        background: transparent;
+        
 
         &::placeholder{
             color: var(--color-grey);
@@ -49,6 +55,7 @@
         &:focus-visible{ 
             outline: 1px solid var(--color-red);
             outline-offset: 2px; 
+            border: none;
         }
     }
     

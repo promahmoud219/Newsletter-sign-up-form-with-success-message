@@ -1,0 +1,52 @@
+$font-family-primary: "Roboto", sans-serif;
+
+$font-weights: (
+    regular: 400,
+    bold: 700
+);
+
+$typography: (
+    1: (
+        font-size: 56px,
+        font-weight: 700,
+        line-height: 1
+    ),
+
+    1-mobile: (
+        font-size: 40px,
+        font-weight: 700,
+        line-height: 1
+    ),
+
+    2-bold: (
+        font-size: 16px,
+        font-weight: 700,
+        line-height: 1.5
+    ),
+
+    2-regular: (
+        font-size: 16px,
+        font-weight: 400,
+        line-height: 1.5
+    ),
+
+    3: (
+        font-size: 12px,
+        font-weight: 700,
+        line-height: 1.5
+    )
+);
+
+@mixin text-preset($preset) {
+    $styles: map-get($typography, $preset);
+
+    @if $styles == null {
+        @error "Unknown typography preset: #{$preset}";
+    }
+
+    font-family: $font-family-primary;
+
+    @each $property, $value in $styles {
+        #{$property}: $value;
+    }
+}

@@ -1,0 +1,21 @@
+:root {
+    // White
+    --color-white: #FFFFFF;
+
+    // Grey
+    --color-grey: #949494;
+
+    // Blue
+    --color-blue-800: #242742;
+    --color-blue-700: #36384D;
+
+    // Red
+    --color-red: #FF6155;
+
+    // Gradient
+    --gradient-primary: linear-gradient(
+        90deg,
+        #FF6A3A 0%,
+        #FF527B 100%
+    );
+}

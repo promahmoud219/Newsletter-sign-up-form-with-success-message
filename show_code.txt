@@ -1,0 +1,206 @@
+==========================================
+FILE: ./index.html
+==========================================
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+ 
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="stylesheet" href="./styles/main.css">  
+
+  <title>Frontend Mentor | Newsletter sign-up form with success message</title>
+
+  <!-- font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+  <main>
+    <section class="newsletter">
+      
+      <div class="newsletter__content">
+        <h1>Stay updated!</h1>
+
+        <p>
+          Join 60,000+ product managers receiving
+          monthly updates on:
+        </p>
+
+        <ul>
+          <li>Product discovery and building what matters</li>
+          <li>Measuring to ensure updates are a success</li>
+          <li>And much more!</li>
+        </ul>
+
+        <form id="newsletter-form" novalidate>
+          
+          <div class="form-group">
+          
+          
+            <div class="form-group__header">
+              <label for="email">Email address</label>
+              
+              <span
+              id="email-error"
+              aria-live="polite"
+              ></span>
+            </div>
+
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="email@company.com"
+              aria-describedby="email-error"
+            >
+            <button type="submit">Subscribe</button>
+          
+          </div>
+
+        </form>
+      </div>
+      <picture class="newsletter__illustration">
+
+        <source
+          media="(min-width: 1440px)"
+          srcset="./assets/images/illustration-sign-up-desktop.svg"
+        >
+
+        <source
+          media="(min-width: 768px)"
+          srcset="./assets/images/illustration-sign-up-tablet.svg"
+        >
+
+        <img
+          src="./assets/images/illustration-sign-up-mobile.svg"
+          alt=""
+        >
+
+      </picture>
+    </section>
+  </main>
+
+  <!-- Success message start -->
+
+  Thanks for subscribing!
+
+  A confirmation email has been sent to ash@loremcompany.com. 
+  Please open it and click the button inside to confirm your subscription.
+
+  Dismiss message
+
+  <!-- Success message end -->
+  
+  <script src="./scripts/main.js" defer></script>  
+</body>
+</html>
+
+==========================================
+FILE: ./scripts/main.js
+==========================================
+
+
+==========================================
+FILE: ./scripts/modal.js
+==========================================
+
+
+==========================================
+FILE: ./scripts/validation.js
+==========================================
+
+
+==========================================
+FILE: ./style.css
+==========================================
+:root {
+  --color-grey-900: #48556A;
+  --color-grey-500: #6E8098;
+  --color-grey-400: #9DAEC2;
+  --color-grey-200: #ECF2F8;
+  --color-white: #FFFFFF;
+}
+
+:root {
+  --spacing-0: 0;
+  --spacing-100: .5rem;
+  --spacing-200: 1rem;
+  --spacing-300: 1.5rem;
+  --spacing-400: 2rem;
+  --spacing-500: 2.5rem;
+  --spacing-600: 3rem;
+  --spacing-700: 3.5rem;
+  --spacing-800: 4rem;
+  --spacing-1300: 6.5rem;
+  --spacing-2000: 10rem;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+==========================================
+FILE: ./styles/main.css
+==========================================
+:root {
+  --color-grey-900: #48556A;
+  --color-grey-500: #6E8098;
+  --color-grey-400: #9DAEC2;
+  --color-grey-200: #ECF2F8;
+  --color-white: #FFFFFF;
+}
+
+:root {
+  --spacing-100: 8px;
+  --spacing-200: 16px;
+  --spacing-300: 24px;
+  --spacing-400: 32px;
+  --spacing-500: 40px;
+  --spacing-600: 48px;
+  --spacing-800: 64px;
+  --spacing-900: 72px;
+  --spacing-1300: 104px;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+html {
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--color-blue-700);
+  color: var(--color-blue-800);
+}
+

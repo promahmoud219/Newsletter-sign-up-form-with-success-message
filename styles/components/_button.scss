@@ -1,0 +1,36 @@
+@use "../abstracts/colors" as *;
+@use "../abstracts/typography" as *;
+
+.button{
+    width: 100%;
+    @include text-preset(2-bold);
+    color: white;
+    
+    border: none;
+    border-radius: var(--spacing-100);
+
+    padding: var(--spacing-200) var(--spacing-900);
+    
+    cursor: pointer;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    
+    background: var(--color-blue-800);
+
+    &:hover{
+        background: var(--gradient-primary);
+    }
+
+    &--secondary:hover{
+        box-shadow: 0 4px 20px 0 var(--color-red);
+    }
+    
+    &:focus-visible {
+        outline: 3px solid var(--color-red);
+        outline-offset: 1px;
+    }
+    
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}

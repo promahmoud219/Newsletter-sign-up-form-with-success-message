@@ -56,7 +56,6 @@
               type="email"
               id="email"
               name="email"
-              class="input--error"
               required
               placeholder="email@company.com"
               aria-describedby="email-error"
@@ -64,7 +63,6 @@
           </div>
 
           <button type="submit" class="button button--primary">Subscribe to monthly newsletter</button>
-          <!-- <button type="submit" class="button button--secondary">Subscribe to monthly newsletter</button> -->
 
         </form>
       </div>
@@ -89,10 +87,10 @@
     </section>
 
     <dialog class="modal" id="success-modal">
-      <img class="modal__img" src="./assets/images/icon-success.svg" alt="">
+      <img class="modal__icon" src="./assets/images/icon-success.svg" alt="">
       <h1 class="modal__title">Thanks for subscribing!</h1>
       <p class="modal__description">
-        A confirmation email has been sent to ash@loremcompany.com. 
+        A confirmation email has been sent to <strong class="modal__email">ash@loremcompany.com.</strong> 
         Please open it and click the button inside to confirm your subscription.
       </p>
       <button class="button modal__button button--secondary">Dismiss message</button>

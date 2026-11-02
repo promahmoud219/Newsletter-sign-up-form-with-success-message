@@ -16,7 +16,11 @@
     border: none;
     box-shadow: 0 0 50px 5px rgba(128, 128, 128, 0.4);
 
-    &__img{
+    &::backdrop {
+        background: rgba(36, 39, 66, 0.5);
+    }
+
+    &__icon{
         width: var(--spacing-800);
         height: var(--spacing-800);
     }
@@ -31,5 +35,9 @@
 
     }
 
+    &__email{
+        @include text-preset(2-bold);
+    }
+    
 
 }

@@ -68,13 +68,9 @@ body {
 .button:hover {
   background: var(--gradient-primary);
 }
-.button--secondary {
-  -webkit-box-shadow: 0 4px 20px 0 transparent;
-          box-shadow: 0 4px 20px 0 transparent;
-}
 .button--secondary:hover {
-  -webkit-box-shadow: 0 4px 20px 0 var(--color-red);
-          box-shadow: 0 4px 20px 0 var(--color-red);
+  -webkit-box-shadow: 0px 13px 44px -16px var(--color-red);
+          box-shadow: 0px 13px 44px -16px var(--color-red);
 }
 .button:focus-visible {
   outline: 3px solid var(--color-red);
@@ -172,7 +168,13 @@ body {
   -webkit-box-shadow: 0 0 50px 5px rgba(128, 128, 128, 0.4);
           box-shadow: 0 0 50px 5px rgba(128, 128, 128, 0.4);
 }
-.modal__img {
+.modal::-ms-backdrop {
+  background: rgba(36, 39, 66, 0.5);
+}
+.modal::backdrop {
+  background: rgba(36, 39, 66, 0.5);
+}
+.modal__icon {
   width: var(--spacing-800);
   height: var(--spacing-800);
 }
@@ -186,5 +188,11 @@ body {
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   font-weight: 400;
+  line-height: 1.5;
+}
+.modal__email {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
   line-height: 1.5;
 }

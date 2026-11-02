@@ -1,21 +1,45 @@
-:root {
-    // White
-    --color-white: #FFFFFF;
+/* Box Sizing */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    // Grey
-    --color-grey: #949494;
+/* Form Elements */
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
 
-    // Blue
-    --color-blue-800: #242742;
-    --color-blue-700: #36384D;
+button {
+    cursor: pointer;
+}
 
-    // Red
-    --color-red: #FF6155;
+/* Images */
+img,
+picture {
+    display: block;
+    max-width: 100%;
+}
 
-    // Gradient
-    --gradient-primary: linear-gradient(
-        90deg,
-        #FF6A3A 0%,
-        #FF527B 100%
-    );
+/* Lists */
+ul,
+ol {
+    list-style: none;
+}
+
+/* Links */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Buttons */
+button {
+    border: none;
+    background: none;
 }

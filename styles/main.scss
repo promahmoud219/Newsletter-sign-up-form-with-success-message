@@ -14,3 +14,65 @@
 @use "components/input" as *;
 @use "components/modal" as *;
 
+.newsletter{
+    
+    &__media{
+        width: 100%;
+        overflow: hidden;
+    }
+
+    &__illustration img{
+        width: 100%;
+        object-fit: cover;
+    }
+
+    &__container{
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        padding: var(--spacing-500) var(--spacing-300); 
+    } 
+
+    &__content{
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-300);
+        color: var(--color-blue-800);
+
+        h1{
+            @include text-preset(1-mobile);
+        }
+        
+        p{
+            @include text-preset(2-regular);
+        }
+
+    }
+
+    &__features{
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-100);
+
+        li{
+            display: flex;    
+            gap: var(--spacing-200);
+        }
+    }
+    
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-300);
+
+        .button,
+        .form-group input {
+            min-height: 58px;
+        }
+        
+    }
+}
+
+[hidden]{
+    display: none !important;
+}

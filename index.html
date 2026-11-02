@@ -20,21 +20,55 @@
   <main>
     <section class="newsletter">
       
-      <div class="newsletter__content">
-        <h1>Stay updated!</h1>
+      <div class="newsletter__media">
+        
+        <picture class="newsletter__illustration">
 
-        <p>
-          Join 60,000+ product managers receiving
-          monthly updates on:
-        </p>
+          <source
+            media="(min-width: 1440px)"
+            srcset="./assets/images/illustration-sign-up-desktop.svg"
+          >
 
-        <ul>
-          <li>Product discovery and building what matters</li>
-          <li>Measuring to ensure updates are a success</li>
-          <li>And much more!</li>
-        </ul>
+          <source
+            media="(min-width: 768px)"
+            srcset="./assets/images/illustration-sign-up-tablet.svg"
+          >
 
-        <form id="newsletter-form" novalidate>
+          <img
+            src="./assets/images/illustration-sign-up-mobile.svg"
+            alt=""
+          >
+
+        </picture>
+        
+      </div>
+      
+      <div class="newsletter__container">
+        <div class="newsletter__content">
+          <h1>Stay updated!</h1>
+
+          <p>
+            Join 60,000+ product managers receiving
+            monthly updates on:
+          </p>
+
+          <ul class="newsletter__features">
+            <li>
+              <img src="./assets/images/icon-list.svg" alt="">
+              <p>Product discovery and building what matters</p>
+            </li>
+            <li>
+              <img src="./assets/images/icon-list.svg" alt="">
+              <p>Measuring to ensure updates are a success</p>
+            </li>
+            <li>
+              <img src="./assets/images/icon-list.svg" alt="">
+              <p>And much more!</p>
+            </li>
+          </ul>
+        </div>  
+
+        <form id="newsletter-form" class="newsletter__form" novalidate>
           
           <div class="form-group">
           
@@ -66,27 +100,9 @@
 
         </form>
       </div>
-      <picture class="newsletter__illustration">
-
-        <source
-          media="(min-width: 1440px)"
-          srcset="./assets/images/illustration-sign-up-desktop.svg"
-        >
-
-        <source
-          media="(min-width: 768px)"
-          srcset="./assets/images/illustration-sign-up-tablet.svg"
-        >
-
-        <img
-          src="./assets/images/illustration-sign-up-mobile.svg"
-          alt=""
-        >
-
-      </picture>
     </section>
 
-    <dialog class="modal" id="success-modal">
+    <dialog class="modal" id="success-modal" hidden>
       <img class="modal__icon" src="./assets/images/icon-success.svg" alt="">
       <h1 class="modal__title">Thanks for subscribing!</h1>
       <p class="modal__description">

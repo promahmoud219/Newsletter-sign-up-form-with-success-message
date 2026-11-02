@@ -265,6 +265,7 @@ body {
         -ms-flex-direction: column;
             flex-direction: column;
     gap: 40px;
+    margin-top: var(--spacing-800);
   }
 }
 @media (min-width: 90rem) {

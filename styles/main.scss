@@ -14,8 +14,28 @@
 @use "components/input" as *;
 @use "components/modal" as *;
 
+body{
+    @media (min-width: $breakpoint-tablet) {
+        background: var(--color-blue-700);
+        display: flex;
+        justify-content: center;
+    }
+}
+
+
 .newsletter{
-    
+
+    background: var(--color-white);
+    border-radius: 36px;
+
+    @media (min-width: $breakpoint-tablet) {
+        padding: var(--spacing-500);
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        margin-top: var(--spacing-600);
+    }
+
     &__media{
         width: 100%;
         overflow: hidden;
@@ -29,8 +49,13 @@
     &__container{
         display: flex;
         flex-direction: column;
-        gap: 40px;
         padding: var(--spacing-500) var(--spacing-300); 
+        gap: var(--spacing-500);
+
+        @media (min-width: $breakpoint-tablet) {
+            padding: 0;
+            gap: var(--spacing-300);
+        }
     } 
 
     &__content{
@@ -45,6 +70,12 @@
         
         p{
             @include text-preset(2-regular);
+        }
+
+        @media (min-width: $breakpoint-tablet) {
+            h1{
+                @include text-preset(1);
+            }
         }
 
     }
@@ -68,6 +99,10 @@
         .button,
         .form-group input {
             min-height: 58px;
+        }
+
+        @media (min-width: $breakpoint-tablet) {
+            gap: var(--spacing-200);
         }
         
     }

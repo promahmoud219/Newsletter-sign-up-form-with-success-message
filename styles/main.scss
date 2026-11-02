@@ -15,10 +15,12 @@
 @use "components/modal" as *;
 
 body{
+    min-height: 100vh;
     @media (min-width: $breakpoint-tablet) {
         background: var(--color-blue-700);
         display: flex;
         justify-content: center;
+        align-items: center;
     }
 }
 
@@ -33,7 +35,6 @@ body{
         display: flex;
         flex-direction: column;
         gap: 40px;
-        margin-top: var(--spacing-600);
     }
     
     @media (min-width: $breakpoint-desktop) {

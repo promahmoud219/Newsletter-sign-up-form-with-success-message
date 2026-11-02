@@ -232,6 +232,9 @@ body {
   line-height: 1.5;
 }
 
+body {
+  min-height: 100vh;
+}
 @media (min-width: 48rem) {
   body {
     background: var(--color-blue-700);
@@ -241,6 +244,9 @@ body {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
 }
 
@@ -259,7 +265,6 @@ body {
         -ms-flex-direction: column;
             flex-direction: column;
     gap: 40px;
-    margin-top: var(--spacing-600);
   }
 }
 @media (min-width: 90rem) {

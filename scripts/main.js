@@ -8,6 +8,8 @@ const modalEmail = document.querySelector(".modal__email");
 const newsletter = document.querySelector(".newsletter");
 const dismissButton = document.querySelector(".modal__button");
 
+
+
 function getEmailErrorMessage() {
     if (emailInput.validity.valueMissing) {
         return "Email address is required";

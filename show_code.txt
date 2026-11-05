@@ -21,36 +21,73 @@ FILE: ./index.html
 <body>
 
   <main>
-    <section class="newsletter">
+    <section class="newsletter" hidden>
       
-      <div class="newsletter__content">
-        <h1>Stay updated!</h1>
+      <div class="newsletter__media">
+        
+        <picture class="newsletter__illustration">
 
-        <p>
-          Join 60,000+ product managers receiving
-          monthly updates on:
-        </p>
+          <source
+            media="(min-width: 1440px)"
+            srcset="./assets/images/illustration-sign-up-desktop.svg"
+          >
 
-        <ul>
-          <li>Product discovery and building what matters</li>
-          <li>Measuring to ensure updates are a success</li>
-          <li>And much more!</li>
-        </ul>
+          <source
+            media="(min-width: 768px)"
+            srcset="./assets/images/illustration-sign-up-tablet.svg"
+          >
 
-        <form id="newsletter-form" novalidate>
+          <img
+            src="./assets/images/illustration-sign-up-mobile.svg"
+            alt=""
+          >
+
+        </picture>
+        
+      </div>
+      
+      <div class="newsletter__container">
+        <div class="newsletter__content">
+          <h1>Stay updated!</h1>
+
+          <p>
+            Join 60,000+ product managers receiving
+            monthly updates on:
+          </p>
+
+          <ul class="newsletter__features">
+            <li>
+              <img src="./assets/images/icon-list.svg" alt="">
+              <p>Product discovery and building what matters</p>
+            </li>
+            <li>
+              <img src="./assets/images/icon-list.svg" alt="">
+              <p>Measuring to ensure updates are a success</p>
+            </li>
+            <li>
+              <img src="./assets/images/icon-list.svg" alt="">
+              <p>And much more!</p>
+            </li>
+          </ul>
+        </div>  
+
+        <form id="newsletter-form" class="newsletter__form" novalidate>
           
           <div class="form-group">
           
-          
             <div class="form-group__header">
+
               <label for="email">Email address</label>
               
               <span
               id="email-error"
+              class="form-group__error"
               aria-live="polite"
               ></span>
+              
             </div>
-
+            
+            <!--  -->
             <input
               type="email"
               id="email"
@@ -59,51 +96,116 @@ FILE: ./index.html
               placeholder="email@company.com"
               aria-describedby="email-error"
             >
-            <button type="submit">Subscribe</button>
-          
           </div>
+
+          <button type="submit" class="button button--primary">Subscribe to monthly newsletter</button>
 
         </form>
       </div>
-      <picture class="newsletter__illustration">
-
-        <source
-          media="(min-width: 1440px)"
-          srcset="./assets/images/illustration-sign-up-desktop.svg"
-        >
-
-        <source
-          media="(min-width: 768px)"
-          srcset="./assets/images/illustration-sign-up-tablet.svg"
-        >
-
-        <img
-          src="./assets/images/illustration-sign-up-mobile.svg"
-          alt=""
-        >
-
-      </picture>
     </section>
-  </main>
 
-  <!-- Success message start -->
-
-  Thanks for subscribing!
-
-  A confirmation email has been sent to ash@loremcompany.com. 
-  Please open it and click the button inside to confirm your subscription.
-
-  Dismiss message
-
-  <!-- Success message end -->
+    <dialog class="modal" id="success-modal">
+      <img class="modal__icon" src="./assets/images/icon-success.svg" alt="">
+      <h1 class="modal__title">Thanks for subscribing!</h1>
+      <p class="modal__description">
+        A confirmation email has been sent to <strong class="modal__email">ash@loremcompany.com.</strong> 
+        Please open it and click the button inside to confirm your subscription.
+      </p>
+      <button class="button modal__button button--secondary">Dismiss message</button>
+    </dialog>
+    
+  </main> 
   
   <script src="./scripts/main.js" defer></script>  
 </body>
 </html>
 
 ==========================================
+FILE: ./package-lock.json
+==========================================
+{
+  "name": "newsletter-sign-up-with-success-message-main",
+  "lockfileVersion": 3,
+  "requires": true,
+  "packages": {}
+}
+
+
+==========================================
+FILE: ./package.json
+==========================================
+{}
+
+
+==========================================
 FILE: ./scripts/main.js
 ==========================================
+
+const form = document.getElementById("newsletter-form");
+const emailInput = document.getElementById("email");
+const emailError = document.getElementById("email-error");
+
+const successModal = document.getElementById("success-modal");
+const modalEmail = document.querySelector(".modal__email");
+const newsletter = document.querySelector(".newsletter");
+const dismissButton = document.querySelector(".modal__button");
+
+function getEmailErrorMessage() {
+    if (emailInput.validity.valueMissing) {
+        return "Email address is required";
+    }
+
+    if (emailInput.validity.typeMismatch) {
+        return "Valid email required";
+    }
+
+    return "";
+}
+
+function clearEmailError() {
+    emailError.textContent = "";
+    emailInput.classList.remove("input--error");
+    emailInput.setAttribute("aria-invalid", "false");
+}
+
+function showEmailError(message) {
+    emailError.textContent = message;
+    emailInput.classList.add("input--error");
+    emailInput.setAttribute("aria-invalid", "true");
+}
+
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    if (!form.checkValidity()) {
+        showEmailError(getEmailErrorMessage());
+        return;
+    }
+
+    clearEmailError();
+
+    const email = emailInput.value.trim();
+
+    // Render untrusted input as plain text.
+    modalEmail.textContent = email;
+
+    newsletter.hidden = true;
+});
+successModal.showModal();
+
+emailInput.addEventListener("input", () => {
+    if (emailInput.validity.valid) {
+        clearEmailError();
+    }
+});
+
+dismissButton.addEventListener("click", () => {
+    successModal.close();
+    form.reset();
+    clearEmailError();
+    emailInput.focus();
+    newsletter.hidden = false;
+});
 
 
 ==========================================
@@ -152,11 +254,17 @@ FILE: ./style.css
 FILE: ./styles/main.css
 ==========================================
 :root {
-  --color-grey-900: #48556A;
-  --color-grey-500: #6E8098;
-  --color-grey-400: #9DAEC2;
-  --color-grey-200: #ECF2F8;
   --color-white: #FFFFFF;
+  --color-grey: #949494;
+  --color-blue-800: #242742;
+  --color-blue-700: #36384D;
+  --color-red: #FF6155;
+  --color-red-bg: #FFE7E6;
+  --gradient-primary: linear-gradient(
+      90deg,
+      #FF6A3A 0%,
+      #FF527B 100%
+  );
 }
 
 :root {
@@ -171,6 +279,7 @@ FILE: ./styles/main.css
   --spacing-1300: 104px;
 }
 
+/* Box Sizing */
 *,
 *::before,
 *::after {
@@ -180,8 +289,11 @@ FILE: ./styles/main.css
           box-sizing: border-box;
 }
 
+/* Form Elements */
 button,
-input {
+input,
+textarea,
+select {
   font: inherit;
 }
 
@@ -189,9 +301,29 @@ button {
   cursor: pointer;
 }
 
-img {
+/* Images */
+img,
+picture {
   display: block;
   max-width: 100%;
+}
+
+/* Lists */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Links */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Buttons */
+button {
+  border: none;
+  background: none;
 }
 
 html {
@@ -201,6 +333,341 @@ html {
 body {
   min-height: 100vh;
   background-color: var(--color-blue-700);
+  background-color: white;
   color: var(--color-blue-800);
+}
+
+.button {
+  width: 100%;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: white;
+  border: none;
+  border-radius: var(--spacing-100);
+  padding: var(--spacing-200);
+  cursor: pointer;
+  -webkit-transition: background 0.3s ease, -webkit-box-shadow 0.3s ease;
+  transition: background 0.3s ease, -webkit-box-shadow 0.3s ease;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  transition: background 0.3s ease, box-shadow 0.3s ease, -webkit-box-shadow 0.3s ease;
+  background: var(--color-blue-800);
+}
+.button:hover {
+  background: var(--gradient-primary);
+}
+.button--secondary:hover {
+  -webkit-box-shadow: 0px 13px 44px -16px var(--color-red);
+          box-shadow: 0px 13px 44px -16px var(--color-red);
+}
+.button:focus-visible {
+  outline: 3px solid var(--color-red);
+  outline-offset: 3px;
+}
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.form-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: var(--spacing-100);
+  color: var(--color-blue-800);
+  width: 100%;
+}
+.form-group__header {
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.5;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.form-group__error {
+  color: var(--color-red);
+}
+.form-group__error:empty {
+  display: none;
+}
+.form-group input {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  padding: var(--spacing-200) var(--spacing-300);
+  border: 1px solid var(--color-grey);
+  border-radius: var(--spacing-100);
+  background: transparent;
+  outline: none;
+}
+.form-group input::-webkit-input-placeholder {
+  color: var(--color-grey);
+}
+.form-group input::-moz-placeholder {
+  color: var(--color-grey);
+}
+.form-group input:-ms-input-placeholder {
+  color: var(--color-grey);
+}
+.form-group input::-ms-input-placeholder {
+  color: var(--color-grey);
+}
+.form-group input::placeholder {
+  color: var(--color-grey);
+}
+.form-group input:focus {
+  border: 2px solid var(--color-blue-800);
+}
+.form-group .input--error {
+  border: 1px solid var(--color-red);
+  background: var(--color-red-bg);
+  color: var(--color-red);
+}
+.form-group .input--error:focus-visible {
+  outline: 1px solid var(--color-red);
+  outline-offset: 2px;
+  border: none;
+}
+
+.modal {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: var(--spacing-400);
+  width: 100%;
+  min-height: 100dvh;
+  margin: 0;
+  background: var(--color-white);
+  color: var(--color-blue-800);
+  border: none;
+  border-radius: 0;
+  -webkit-box-shadow: 0 0 50px 5px rgba(128, 128, 128, 0.4);
+          box-shadow: 0 0 50px 5px rgba(128, 128, 128, 0.4);
+}
+.modal:not([open]) {
+  display: none;
+}
+.modal::-ms-backdrop {
+  background: rgba(36, 39, 66, 0.5);
+}
+.modal::backdrop {
+  background: rgba(36, 39, 66, 0.5);
+}
+.modal__icon {
+  width: var(--spacing-800);
+  height: var(--spacing-800);
+}
+.modal__title {
+  font-family: "Roboto", sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1;
+}
+.modal__description {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+.modal__email {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+@media (min-width: 48rem) {
+  .modal {
+    width: 504px;
+    height: 520px;
+  }
+  .modal__title {
+    font-family: "Roboto", sans-serif;
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1;
+  }
+}
+
+body {
+  min-height: 100vh;
+}
+@media (min-width: 48rem) {
+  body {
+    background: var(--color-blue-700);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
+.newsletter {
+  background: var(--color-white);
+  border-radius: 36px;
+}
+@media (min-width: 48rem) {
+  .newsletter {
+    padding: var(--spacing-500);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    gap: 40px;
+    margin-top: var(--spacing-800);
+  }
+}
+@media (min-width: 90rem) {
+  .newsletter {
+    padding: var(--spacing-400);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+    gap: 0;
+  }
+  .newsletter__media {
+    width: 400px;
+  }
+}
+.newsletter__illustration img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media (min-width: 90rem) {
+  .newsletter__illustration img {
+    width: 400px;
+  }
+}
+.newsletter__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: var(--spacing-500) var(--spacing-300);
+  gap: var(--spacing-500);
+}
+@media (min-width: 48rem) {
+  .newsletter__container {
+    padding: 0;
+    gap: var(--spacing-300);
+  }
+}
+@media (min-width: 90rem) {
+  .newsletter__container {
+    gap: var(--spacing-400);
+    padding: var(--spacing-900) var(--spacing-800) var(--spacing-900) 0px;
+  }
+}
+.newsletter__content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: var(--spacing-300);
+  color: var(--color-blue-800);
+}
+.newsletter__content h1 {
+  font-family: "Roboto", sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1;
+}
+.newsletter__content p {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+@media (min-width: 48rem) {
+  .newsletter__content h1 {
+    font-family: "Roboto", sans-serif;
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1;
+  }
+}
+@media (min-width: 90rem) {
+  .newsletter__content {
+    gap: var(--spacing-400);
+    width: 376px;
+  }
+}
+.newsletter__features {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: var(--spacing-100);
+}
+.newsletter__features li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: var(--spacing-200);
+}
+.newsletter__form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: var(--spacing-300);
+}
+.newsletter__form .button,
+.newsletter__form .form-group input {
+  min-height: 58px;
+}
+@media (min-width: 48rem) {
+  .newsletter__form {
+    gap: var(--spacing-200);
+  }
+}
+@media (min-width: 90rem) {
+  .newsletter__form {
+    gap: var(--spacing-300);
+  }
+}
+
+[hidden] {
+  display: none !important;
 }
 

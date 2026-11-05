@@ -16,6 +16,7 @@
 
 body{
     min-height: 100vh;
+
     @media (min-width: $breakpoint-tablet) {
         background: var(--color-blue-700);
         display: flex;
@@ -23,7 +24,6 @@ body{
         align-items: center;
     }
 }
-
 
 .newsletter{
 
@@ -134,8 +134,10 @@ body{
         }
         
     }
+
 }
 
 [hidden]{
     display: none !important;
 }
+

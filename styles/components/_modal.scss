@@ -1,20 +1,36 @@
 @use "./../abstracts/colors" as *;
 @use "./../abstracts/spacing" as *;
 @use "./../abstracts/typography" as *;
+@use "./../abstracts/breakpoints" as *;
 
 .modal{
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-400);
-    padding: var(--spacing-800);
+    padding: 149px 24px 70px;
+    position: fixed;
+    inset: 0;
 
+    overflow: hidden;
+
+    width: 100dvw;
+    height: 100dvh;
+
+    max-width: none;
+    max-height: none;
+
+    border: none;
+    margin: 0;
+
+    
     background: var(--color-white);
     color: var(--color-blue-800);
-
-
-    border-radius: 36px;
-    border: none;
+    
+    border-radius: 0;
     box-shadow: 0 0 50px 5px rgba(128, 128, 128, 0.4);
+ 
+    &[open] {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-400);
+    }
 
     &::backdrop {
         background: rgba(36, 39, 66, 0.5);
@@ -26,8 +42,7 @@
     }
 
     &__title{
-        @include text-preset(1);
-        
+        @include text-preset(1-mobile);
     }
     
     &__description{
@@ -38,6 +53,21 @@
     &__email{
         @include text-preset(2-bold);
     }
-    
 
+    &__button {
+        margin-top: auto;
+    }
+
+    @media (min-width: $breakpoint-tablet) {
+        width: 504px;
+        height: 520px;
+        
+        border-radius: 36px;
+        padding: var(--spacing-800);
+        margin: auto;
+
+        &__title{
+            @include text-preset(1);
+        }
+    }
 }

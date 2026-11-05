@@ -59,6 +59,10 @@ emailInput.addEventListener("input", () => {
     }
 });
 
+successModal.addEventListener("close", () => {
+    newsletter.hidden = false;
+})
+
 dismissButton.addEventListener("click", () => {
     successModal.close();
     form.reset();

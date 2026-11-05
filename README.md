@@ -226,4 +226,8 @@ I used these discussions to understand and evaluate the trade-offs, then applied
 ## Author
 
 - GitHub: [@promahmoud219](https://github.com/promahmoud219)
+<<<<<<< HEAD
 - Frontend Mentor: [@promahmoud219](https://www.frontendmentor.io/profile/promahmoud219)
+=======
+- Frontend Mentor: [@promahmoud219](https://www.frontendmentor.io/profile/promahmoud219)
+>>>>>>> ffa1a91e94b643ac9531203b02514d2a0e5909a1
